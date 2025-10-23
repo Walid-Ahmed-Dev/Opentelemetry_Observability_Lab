@@ -53,7 +53,7 @@ The observability lab uses a **defense-in-depth networking architecture** combin
 │  │  │ 172.18.0.2   │◄───────────── 172.18.0.3   │             │  │
 │  │  └──────────────┘             └──────┬───────┘             │  │
 │  │        │                             │                     │  │
-│  │        │ Static Files                │ OTLP Telemetry      │  │
+│  │        │                             │ OTLP Telemetry      │  │
 │  │        │                             ▼                     │  │
 │  │        │                   ┌─────────────────┐             │  │
 │  │        │                   │ OTel Collector  │             │  │
