@@ -113,7 +113,7 @@ graph TB
 
     subgraph kvm["KVM Virtual Machine (192.168.122.250)"]
         subgraph compose["Docker Compose Stack (Project: lab)"]
-            frontend[Frontend<br/>Nginx (HTML/JS)<br/>Port: 8080]
+            frontend[Frontend<br/>Nginx + React<br/>Port: 8080]
             backend[Backend<br/>Flask + SQLite<br/>Port: 5000]
             collector[OTel Collector<br/>Telemetry Hub<br/>Ports: 4317/4318]
 
