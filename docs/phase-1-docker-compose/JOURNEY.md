@@ -931,7 +931,7 @@ This observability lab is **milestone 1** in a multi-year journey to become a co
 
 **What's Next:**
 - Phase 2: Policy as code & secure delivery (OPA, Vault, SonarQube/Snyk/Trivy, Artifactory)
-- Phase 3: Kubernetes refactoring & automation (Helm, ArgoCD, Istio/Envoy, Ansible)
+- Phase 3: Kubernetes refactoring & automation (Helm, ArgoCD, Istio + Envoy service mesh, Ansible)
 - Phase 4: Cloud-native AWS migration (ECS/EKS iteration, managed telemetry, EventBridge/SQS)
 
 **Why Share This?**

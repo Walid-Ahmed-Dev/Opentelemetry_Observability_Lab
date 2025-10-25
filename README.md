@@ -44,8 +44,8 @@
 ---
 
 ### 🛣️ What’s Next
-- **Phase 2** → OPA/Rego policies, SAST/DAST, artifact management.  
-- **Phase 3** → Kubernetes (Helm, StatefulSets), PostgreSQL, possible service mesh.
+- **Phase 2** → OPA/Rego policies, SAST/DAST, Vault credential management, artifact management.  
+- **Phase 3** → Kubernetes (Helm, StatefulSets), PostgreSQL, Istio + Envoy service mesh.
 
 > **Verification:** Run the **Deployment Verification** checklist after any change to confirm green scrapes, traces, and dashboards.
 

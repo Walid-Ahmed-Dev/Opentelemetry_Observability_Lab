@@ -96,7 +96,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 
 ## Phase 2: Policy as Code & Secure Delivery
 
-**Objective:** Shift security left, enforce policy guardrails, and establish artifact provenance
+**Objective:** Shift security left, enforce policy guardrails, reintroduce Vault for dynamic secrets, and establish artifact provenance
 
 **Target Timeline:** Q1 2026 (3-4 months)
 **Status:** Planning
@@ -264,7 +264,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 
 ## Phase 3: Kubernetes Refactoring & Platform Automation
 
-**Objective:** Migrate to Kubernetes for orchestration, introduce service mesh, and automate infrastructure provisioning
+**Objective:** Migrate to Kubernetes for orchestration, introduce an Istio + Envoy service mesh, and automate infrastructure provisioning
 
 **Target Timeline:** Q2-Q3 2026 (6 months)
 **Status:** Planning
@@ -325,7 +325,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 **Deliverables:**
 
 **Istio Service Mesh:**
-- Install Istio control plane
+- Install Istio control plane and manage Envoy sidecars
 - Deploy Envoy sidecars to all application pods
 - Configure mTLS for service-to-service communication
 - Implement traffic routing rules:
@@ -437,8 +437,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 - Update application configuration
 
 **Phase 3.3: Service Mesh (Month 4)**
-- Install Istio control plane
-- Inject Envoy sidecars progressively
+- Install Istio control plane with Envoy sidecars
 - Enable mTLS service by service
 - Implement first canary deployment
 
@@ -742,7 +741,7 @@ When evaluating new technologies for any phase, apply these criteria:
 
 **Examples:**
 - ✅ Prometheus: Industry-standard metrics
-- ✅ Istio: Battle-tested service mesh
+- ✅ Istio + Envoy: Battle-tested service mesh
 - ❌ Experimental tool with no production track record
 
 #### 3. Operational Complexity
@@ -788,7 +787,7 @@ When evaluating new technologies for any phase, apply these criteria:
 | **Docker Compose** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | Free | → Kubernetes | Phase 1 |
 | **Kubernetes** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | Free (self-hosted) | → EKS | Phase 3 |
 | **Ansible** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Free | → Terraform (optional) | Phase 3 |
-| **Istio** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | Free | → AWS App Mesh (optional) | Phase 3 |
+| **Istio + Envoy** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | Free | → AWS App Mesh (optional) | Phase 3 |
 | **OPA/Rego** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Free | N/A (portable) | Phase 2 |
 | **Vault** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Free (OSS) | → AWS Secrets Manager | Phase 2 |
 | **SonarQube** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Free (Community) | N/A (portable) | Phase 2 |
@@ -959,7 +958,7 @@ Phase 4: Cloud-Native Security
 - ✅ Ansible playbooks for automation
 
 **Optional but Recommended:**
-- Istio service mesh (easier to migrate to AWS App Mesh or stay with Istio on EKS)
+- Istio + Envoy service mesh (easier to migrate to AWS App Mesh or stay with Istio on EKS)
 - ArgoCD GitOps (can use same approach on EKS)
 
 **Blockers if Phase 3 Incomplete:**

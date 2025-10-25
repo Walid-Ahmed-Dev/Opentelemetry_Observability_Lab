@@ -3,7 +3,7 @@
 ## 🚀 Current Phase: Phase 1 - Docker Compose Stack
 **Status:** ✅ Complete
 **Last Updated:** 2025-10-22
-**Next Phase:** Phase 2 - Policy as Code & Secure Delivery 
+**Next Phase:** Phase 2 - Policy as Code & Secure Delivery (Vault reintegration)
 
 ---
 
@@ -102,7 +102,7 @@ For first-time Jenkins deployment, these setup resources are available in the `j
 
 ### Phase 3: Kubernetes Refactoring & Platform Automation 💭 Concept
 
-**Scope:** Kubernetes cluster, Helm charts, PostgreSQL, Istio/Envoy, ArgoCD, Ansible automation
+**Scope:** Kubernetes cluster, Helm charts, PostgreSQL, Istio + Envoy service mesh, ArgoCD, Ansible automation
 
 **Planned Start:** After Phase 2 hardening
 **Estimated Duration:** Multi-phase rollout
@@ -111,7 +111,7 @@ For first-time Jenkins deployment, these setup resources are available in the `j
 - Docker Compose → Kubernetes manifests backed by Helm
 - SQLite → PostgreSQL StatefulSet with PersistentVolumes
 - On-prem K8s cluster (kubeadm + Ansible automation)
-- Istio service mesh with Envoy sidecars for mTLS and traffic shaping
+- Istio + Envoy service mesh for mTLS and traffic shaping
 - GitOps: ArgoCD managing Git-driven deployments
 
 ---
