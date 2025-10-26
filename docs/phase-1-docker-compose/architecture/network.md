@@ -881,6 +881,7 @@ backend:
 - OAuth2 Proxy for authentication
 - Rate limiting (Nginx limit_req)
 - Firewall rules (UFW)
+- Secrets distribution via HCP Vault (short-lived tokens for proxy services)
 
 ### Phase 3: Kubernetes Migration (Q2-Q3 2026)
 
@@ -933,7 +934,7 @@ spec:
 
 ### Phase 4: Service Mesh (Q4 2026)
 
-**Istio/Linkerd Integration:**
+**Istio + Envoy / Linkerd Integration:**
 - Mutual TLS (mTLS) for all service-to-service communication
 - Traffic splitting (canary deployments, A/B testing)
 - Circuit breaking, retries, timeouts (resilience patterns)

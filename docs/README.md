@@ -3,7 +3,7 @@
 ## 🚀 Current Phase: Phase 1 - Docker Compose Stack
 **Status:** ✅ Complete
 **Last Updated:** 2025-10-22
-**Next Phase:** Phase 2 - Policy as Code & Secure Delivery 
+**Next Phase:** Phase 2 - Policy as Code & Secure Delivery (HCP Vault reintegration)
 
 ---
 
@@ -78,7 +78,7 @@ For first-time Jenkins deployment, these setup resources are available in the `j
 
 ### Phase 2: Policy as Code & Secure Delivery 📋 Planned
 
-**Scope:** OPA/Rego guardrails, SonarQube/Snyk/Trivy, Vault reintroduction, JFrog Artifactory, incremental hardening
+**Scope:** OPA/Rego guardrails, SonarQube/Snyk/Trivy, HCP Vault reintroduction, JFrog Artifactory, incremental hardening
 
 **Planned Start:** After Phase 1 stabilization
 **Estimated Duration:** Iterative milestones
@@ -95,14 +95,14 @@ For first-time Jenkins deployment, these setup resources are available in the `j
 - SAST/DAST: SonarQube coverage, Snyk dependency scanning, OWASP ZAP automation
 - Container Scanning: Trivy for image analysis
 - Artifact Management: JFrog Artifactory with provenance attestation
-- Secrets Management: Vault returns for short-lived credentials
+- Secrets Management: HCP Vault returns for short-lived credentials
 - Server Hardening: fail2ban, UFW firewall, auditd, MFA for privileged access
 
 ---
 
 ### Phase 3: Kubernetes Refactoring & Platform Automation 💭 Concept
 
-**Scope:** Kubernetes cluster, Helm charts, PostgreSQL, Istio/Envoy, ArgoCD, Ansible automation
+**Scope:** Kubernetes cluster, Helm charts, PostgreSQL, Istio + Envoy service mesh, ArgoCD, Ansible automation
 
 **Planned Start:** After Phase 2 hardening
 **Estimated Duration:** Multi-phase rollout
@@ -111,7 +111,7 @@ For first-time Jenkins deployment, these setup resources are available in the `j
 - Docker Compose → Kubernetes manifests backed by Helm
 - SQLite → PostgreSQL StatefulSet with PersistentVolumes
 - On-prem K8s cluster (kubeadm + Ansible automation)
-- Istio service mesh with Envoy sidecars for mTLS and traffic shaping
+- Istio + Envoy service mesh for mTLS and traffic shaping
 - GitOps: ArgoCD managing Git-driven deployments
 
 ---

@@ -96,7 +96,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 
 ## Phase 2: Policy as Code & Secure Delivery
 
-**Objective:** Shift security left, enforce policy guardrails, and establish artifact provenance
+**Objective:** Shift security left, enforce policy guardrails, reintroduce HCP Vault for dynamic secrets, and establish artifact provenance
 
 **Target Timeline:** Q1 2026 (3-4 months)
 **Status:** Planning
@@ -173,15 +173,15 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 - Implement artifact retention policies
 - Create promotion workflows (dev → staging → prod)
 
-**HashiCorp Vault Integration:**
-- Reintroduce Vault (previously integrated, removed for simplification)
+**HCP Vault Integration:**
+- Reintroduce HCP Vault (previously integrated, removed for simplification)
 - Configure AppRole authentication for Jenkins
 - Issue short-lived credentials for:
   - SSH deployment keys
   - Container registry tokens
   - Database passwords (future PostgreSQL migration)
 - Implement automatic credential rotation
-- Add Vault audit logging
+- Add HCP Vault audit logging
 
 **Learning Objectives:**
 - Understand artifact lifecycle management
@@ -235,7 +235,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 **Policy Enforcement:**
 - 100% of policy checks passing before Phase 3
 - Zero privileged containers in production
-- All secrets managed via Vault (no hardcoded credentials)
+- All secrets managed via HCP Vault (no hardcoded credentials)
 
 **Security Posture:**
 - SAST scan results: Zero critical vulnerabilities
@@ -246,18 +246,18 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 **Artifact Management:**
 - All container images stored in Artifactory with provenance
 - Image signing enabled for production deployments
-- Vault issuing 100% of credentials (zero static secrets)
+- HCP Vault issuing 100% of credentials (zero static secrets)
 
 ### Dependencies & Risks
 
 **Dependencies:**
 - Phase 1 infrastructure and CI/CD pipeline
-- Additional compute resources for new services (SonarQube, Vault, Artifactory)
+- Additional compute resources for new services (SonarQube, HCP Vault, Artifactory)
 - Learning time for Rego, OPA, and security tooling
 
 **Risks:**
 - Policy authoring complexity (mitigation: start with simple policies, iterate)
-- Vault integration complexity (mitigation: reuse prior implementation)
+- HCP Vault integration complexity (mitigation: reuse prior implementation)
 - Performance impact of security scans (mitigation: run in parallel, optimize scan scope)
 
 ---
@@ -325,7 +325,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 **Deliverables:**
 
 **Istio Service Mesh:**
-- Install Istio control plane
+- Install Istio control plane and manage Envoy sidecars
 - Deploy Envoy sidecars to all application pods
 - Configure mTLS for service-to-service communication
 - Implement traffic routing rules:
@@ -582,7 +582,7 @@ The "On-Prem Domain" project aims to build comprehensive infrastructure expertis
 - Compare with self-hosted Loki
 
 **AWS Secrets Manager & Parameter Store:**
-- Migrate secrets from HashiCorp Vault
+- Migrate secrets from HCP Vault
 - Use AWS Secrets Manager for database credentials
 - Use Parameter Store for configuration
 - Implement automatic rotation for RDS passwords
@@ -742,7 +742,7 @@ When evaluating new technologies for any phase, apply these criteria:
 
 **Examples:**
 - ✅ Prometheus: Industry-standard metrics
-- ✅ Istio: Battle-tested service mesh
+- ✅ Istio + Envoy: Battle-tested service mesh
 - ❌ Experimental tool with no production track record
 
 #### 3. Operational Complexity
@@ -788,9 +788,9 @@ When evaluating new technologies for any phase, apply these criteria:
 | **Docker Compose** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | Free | → Kubernetes | Phase 1 |
 | **Kubernetes** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | Free (self-hosted) | → EKS | Phase 3 |
 | **Ansible** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Free | → Terraform (optional) | Phase 3 |
-| **Istio** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | Free | → AWS App Mesh (optional) | Phase 3 |
+| **Istio + Envoy** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | Free | → AWS App Mesh (optional) | Phase 3 |
 | **OPA/Rego** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Free | N/A (portable) | Phase 2 |
-| **Vault** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Free (OSS) | → AWS Secrets Manager | Phase 2 |
+| **HCP Vault** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Free (OSS) | → AWS Secrets Manager | Phase 2 |
 | **SonarQube** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Free (Community) | N/A (portable) | Phase 2 |
 | **ArgoCD** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Free | N/A (portable) | Phase 3 |
 | **Amazon EKS** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | $$ (managed control plane) | N/A | Phase 4 |
@@ -840,7 +840,7 @@ Phase 2: Policy-Gated Pipeline
   └─ OPA policy checks
      └─ SAST/DAST/dependency scans
         └─ Artifactory push
-           └─ Vault credential issuance
+           └─ HCP Vault credential issuance
 
 Phase 3: GitOps
   └─ Git commit
@@ -897,7 +897,7 @@ Phase 1: Basic Hardening
 Phase 2: Shift-Left Security
   └─ SAST/DAST gates
      └─ OPA policy enforcement
-        └─ Vault credential management
+        └─ HCP Vault credential management
            └─ Server hardening (fail2ban, UFW)
 
 Phase 3: Zero-Trust Networking
@@ -944,7 +944,7 @@ Phase 4: Cloud-Native Security
 - Artifact management in place (for Helm chart storage)
 
 **Optional but Recommended:**
-- Vault integration (for Kubernetes secrets management)
+- HCP Vault integration (for Kubernetes secrets management)
 - SAST/DAST gates (maintain security posture in K8s)
 
 **Can Proceed Without Phase 2:**
@@ -959,7 +959,7 @@ Phase 4: Cloud-Native Security
 - ✅ Ansible playbooks for automation
 
 **Optional but Recommended:**
-- Istio service mesh (easier to migrate to AWS App Mesh or stay with Istio on EKS)
+- Istio + Envoy service mesh (easier to migrate to AWS App Mesh or stay with Istio on EKS)
 - ArgoCD GitOps (can use same approach on EKS)
 
 **Blockers if Phase 3 Incomplete:**
@@ -983,7 +983,7 @@ Phase 4: Cloud-Native Security
 - Week 3-4: OWASP ZAP DAST automation
 
 **Month 3: Artifact & Hardening**
-- Week 1-2: JFrog Artifactory setup and Vault reintegration
+- Week 1-2: JFrog Artifactory setup and HCP Vault reintegration
 - Week 3-4: Server hardening (fail2ban, UFW, auditd)
 
 **Checkpoint:** All security gates operational, Phase 3 greenlit
@@ -1090,7 +1090,7 @@ Phase 4: Cloud-Native Security
 - DAST automation (OWASP ZAP)
 
 **Secrets Management:**
-- Dynamic secrets issuance (Vault)
+- Dynamic secrets issuance (HCP Vault)
 - Credential rotation
 - Audit logging
 
@@ -1182,7 +1182,7 @@ Phase 4: Cloud-Native Security
 **Artifact & Secrets:**
 - [ ] JFrog Artifactory storing all container images
 - [ ] Image signing and provenance enabled
-- [ ] Vault issuing 100% of dynamic credentials
+- [ ] HCP Vault issuing 100% of dynamic credentials
 - [ ] Zero static secrets in code or configs
 
 **Server Hardening:**
@@ -1304,7 +1304,7 @@ Phase 4: Cloud-Native Security
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| Vault integration complexity | Medium | Medium | Reuse prior implementation, start simple |
+| HCP Vault integration complexity | Medium | Medium | Reuse prior implementation, start simple |
 | Policy authoring errors | High | Low | Test policies in non-prod first |
 | Security scan false positives | High | Low | Tune scan rules, establish exemption process |
 

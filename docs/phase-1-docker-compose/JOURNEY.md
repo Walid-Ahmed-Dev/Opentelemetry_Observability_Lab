@@ -754,7 +754,7 @@ After weeks of debugging, refactoring, and documenting, I had a **production-gra
 **Infrastructure:**
 - KVM/libvirt virtualization on Debian 13 (simulates on-prem data center)
 - Containerized Jenkins with Docker agents (CI/CD control plane)
-- Secrets managed manually in this iteration (Vault integration returns later)
+- Secrets managed manually in this iteration (HCP Vault integration returns later)
 - SSH-based deployment pipeline (rsync + docker compose)
 
 **Application:**
@@ -817,7 +817,7 @@ This isn't the end—it's **milestone 1** in a multi-year learning journey.
 
 **Artifact & Secrets Management:**
 - Stand up JFrog Artifactory for immutable artifacts with provenance
-- Reintroduce Vault to mint short-lived credentials for the pipeline
+- Reintroduce HCP Vault to mint short-lived credentials for the pipeline
 - Expand pre-commit hooks (`black`, `flake8`, `prettier`, `detect-secrets`)
 
 **Operational Hardening:**
@@ -828,7 +828,7 @@ This isn't the end—it's **milestone 1** in a multi-year learning journey.
 
 **Why Kubernetes Now:**
 - Multi-node orchestration and horizontal scalability
-- Service mesh adoption (Istio with Envoy) for uniform telemetry and mTLS
+- Service mesh adoption (Istio + Envoy) for uniform telemetry and mTLS
 - Align with industry-standard platform operations
 
 **Migration Path:**
@@ -930,8 +930,8 @@ This observability lab is **milestone 1** in a multi-year journey to become a co
 - ✅ Comprehensive documentation (architecture, design decisions, this journey)
 
 **What's Next:**
-- Phase 2: Policy as code & secure delivery (OPA, Vault, SonarQube/Snyk/Trivy, Artifactory)
-- Phase 3: Kubernetes refactoring & automation (Helm, ArgoCD, Istio/Envoy, Ansible)
+- Phase 2: Policy as code & secure delivery (OPA, HCP Vault, SonarQube/Snyk/Trivy, Artifactory)
+- Phase 3: Kubernetes refactoring & automation (Helm, ArgoCD, Istio + Envoy service mesh, Ansible)
 - Phase 4: Cloud-native AWS migration (ECS/EKS iteration, managed telemetry, EventBridge/SQS)
 
 **Why Share This?**

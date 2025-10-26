@@ -44,8 +44,8 @@
 ---
 
 ### 🛣️ What’s Next
-- **Phase 2** → OPA/Rego policies, SAST/DAST, artifact management.  
-- **Phase 3** → Kubernetes (Helm, StatefulSets), PostgreSQL, possible service mesh.
+- **Phase 2** → OPA/Rego policies, SAST/DAST, HCP Vault, artifact management.  
+- **Phase 3** → Kubernetes (Helm, StatefulSets), PostgreSQL, Istio + Envoy service mesh.
 
 > **Verification:** Run the **Deployment Verification** checklist after any change to confirm green scrapes, traces, and dashboards.
 
@@ -682,7 +682,7 @@ histogram_quantile(0.95, sum(rate(db_query_duration_seconds_bucket[5m])) by (le,
 **Artifact & Credential Management:**
 - Stand up JFrog Artifactory for immutable artifact storage
 - Enable provenance/attestation on Docker images
-- Bring back Vault to issue short-lived credentials to the pipeline
+- Bring back HCP Vault to issue short-lived credentials to the pipeline
 
 **Operational Guardrails:**
 - Expand pre-commit hooks (`black`, `flake8`, `prettier`, `detect-secrets`)
@@ -691,7 +691,7 @@ histogram_quantile(0.95, sum(rate(db_query_duration_seconds_bucket[5m])) by (le,
 
 _Backlog carried forward from earlier roadmap:_
 - **Server Hardening:** Implement comprehensive Linux hardening (fail2ban, UFW firewall, kernel tuning); reference [How To Secure A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server); follow the sequence SSH keys (done) → fail2ban → firewall → HIDS → audit logging
-- **Artifact & Credential Management:** Stand up JFrog Artifactory for immutable artifact storage; enable provenance/attestation on Docker images; bring back Vault to issue short-lived credentials to the pipeline
+- **Artifact & Credential Management:** Stand up JFrog Artifactory for immutable artifact storage; enable provenance/attestation on Docker images; bring back HCP Vault to issue short-lived credentials to the pipeline
 
 ### Phase 3: Kubernetes Refactoring & Platform Automation
 
@@ -701,7 +701,7 @@ _Backlog carried forward from earlier roadmap:_
 - Migrate SQLite to PostgreSQL via StatefulSets and PersistentVolumes
 
 **Traffic & Observability Fabric:**
-- Adopt Istio with Envoy sidecars for mTLS, canary routing, and uniform telemetry
+- Adopt an Istio + Envoy service mesh for mTLS, canary routing, and uniform telemetry
 - Standardize tracing/metrics exports with OpenTelemetry Collector on the cluster
 
 **GitOps & Automation:**

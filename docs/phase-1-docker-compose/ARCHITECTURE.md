@@ -20,15 +20,15 @@ This isn't just an observability lab. It's:
 - **A CI/CD Testing Ground** deployed via Jenkins pipeline to a dedicated VM
 - **A Migration Experimentation Platform** for testing cloud migration strategies
 - **A Production Architecture Blueprint** demonstrating SRE best practices
-- **A Foundation for Future Growth** (Kubernetes, Ansible, service mesh, hybrid cloud)
+- **A Foundation for Future Growth** (Kubernetes, Ansible, Istio + Envoy service mesh, hybrid cloud)
 
 ### The Journey Ahead
 
 This proof of concept is the **first milestone** in a larger vision:
 
 1. **Current State:** Docker Compose observability stack on VM
-2. **Phase 2:** Policy as Code (OPA/Rego), SAST/DAST, artifact management
-3. **Phase 3:** Ansible automation, kubernetes refactoring, Istio, Envoy, ArgoCD, Helm
+2. **Phase 2:** Policy as Code (OPA/Rego), SAST/DAST, HCP Vault, artifact management
+3. **Phase 3:** Ansible automation, Kubernetes refactoring, Istio + Envoy service mesh, ArgoCD, Helm
 4. **Phase 4:** Cloud-native AWS migration, ECS & EKS iteration
 
 ---
